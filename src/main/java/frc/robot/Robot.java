@@ -11,22 +11,24 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.commands.Drive;
 
 public class Robot extends TimedRobot {
-  private Joystick lj, rj;
+  private Joystick lj = new Joystick(0);
+  private Joystick rj = new Joystick(1);
 
-  private Drivetrain drivetrain = new Drivetrain(0, 1);
-  private Drive drive;
+  private final Drivetrain drivetrain = new Drivetrain(9, 8);
+  private final Drive drive = new Drive(this.drivetrain, this.lj, this.rj);
 
   @Override
   public void robotInit() {
-    this.lj = new Joystick(0);
-    this.rj = new Joystick(1);
-    drive = new Drive(this.drivetrain, this.lj, this.rj);
   }
 
   @Override
   public void teleopInit() {
-    drive.schedule();
-    drive.initialize();
+    drivetrain.setDefaultCommand(drive);
+
+
+
+    //drive.schedule();
+    //drive.initialize();
   }
 
   public void teleopPeriodic() {

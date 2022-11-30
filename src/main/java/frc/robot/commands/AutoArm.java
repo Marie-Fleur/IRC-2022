@@ -1,27 +1,26 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Arm;
 import edu.wpi.first.wpilibj2.command.CommandBase; 
 
 public class AutoArm extends CommandBase {
-    private Drivetrain drivetrain;
-    private double ls, rs;
+    private Arm arm;
+    private double ls;
 
-    public AutoArm(Drivetrain dt, double ls, double rs) {
-        this.drivetrain = dt;
+    public AutoArm(Arm dt, double ls) {
+        this.arm = dt;
         this.ls = ls;
-        this.rs = rs;
-        super.addRequirements(drivetrain);
+        super.addRequirements(arm);
     }
     
     @Override
     public void initialize() {
-        drivetrain.stop();
+        arm.stop();
     }
 
     @Override
     public void execute() {
-        drivetrain.drive(ls, rs);
+        arm.lift(ls);
     }
 
     @Override
@@ -31,6 +30,6 @@ public class AutoArm extends CommandBase {
 
     @Override
     public void end(boolean stop) {
-        drivetrain.stop();
+        arm.stop();
     }
 }
