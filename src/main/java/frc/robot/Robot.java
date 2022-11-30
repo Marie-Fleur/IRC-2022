@@ -29,6 +29,10 @@ public class Robot extends TimedRobot {
     drive.initialize();
   }
 
+  public void teleopPeriodic() {
+    drive.execute();
+  }
+
   @Override
   public void autonomousInit() {
     drive.end(true);
